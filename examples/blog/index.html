@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head data-merge-include="includes/head.html" data-merge-include-type="append">
+  <meta charset="utf-8">
+  <title>My Blog</title>
+  <base href="/examples/blog/">
+</head>
+<body>
+  <header data-merge-include="includes/header-profile.html"></header>
+  <section id="wrapper">
+    <ul id="post-list" data-merge-repeat="posts">
+      <li>
+        <article>
+          <section class="post-body">
+          <header>
+          <h2><a href="${href}">${title}</a></h2>
+          </header>
+          <section class="post-body">
+            ${body}
+          </section>
+          </section>
+          <a href="${href}" class="u-url">
+          <aside class="dates">
+            <time datetime="${date}" class="dt-published">→ ${date}</time>
+          </aside>
+          </a>
+        </article>
+      </li>
+    </ul>
+  </section>
+  <footer id="footer" data-merge-include="includes/footer.html"></footer>
+  <script data-type="merge-script">
+    document.addEventListener('DOMContentLoaded', function() {
+      merge.loadState('posts.json');
+    }, false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "title": "Test title",
+      "body": "Some test content that will lead to a larger article...",
+      "href": "/examples/blog/posts/my-test.html",
+      "date": "June 20th - 1983"
+    },
+    {
+      "title": "Pithy qoute",
+      "href": "#pithy-quote",
+      "body": "<blockquote>“People say nothing is impossible, but I do nothing every day.”</blockquote> <p>– A. A. Milne</p><p><img src='assets/img/milne.jpg' width='100' /></p>",
+      "date": "Dec 30th - 1999"
+    }
+  ]
+}

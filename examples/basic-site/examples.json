@@ -1,0 +1,8 @@
+{
+  "examples": {
+    "includes": "&#x3C;div data-merge-include=&#x22;footer.html&#x22;&#x3E;&#x3C;/div&#x3E;\n\n&#x3C;!-- will automatically include the footer.html file --&#x3E;",
+    "loops": "&#x3C;ul class=&#x22;links&#x22; data-merge-repeat=&#x22;items&#x22;&#x3E;\n  &#x3C;li&#x3E;\n    &#x3C;a href=&#x22;${link}&#x22;&#x3E;${label}&#x3C;/a&#x3E;\n  &#x3C;/li&#x3E;\n&#x3C;/ul&#x3E;\n\n&#x3C;script data-type=&#x22;merge-script&#x22;&#x3E;\ndocument\n  .addEventListener(&#x27;DOMContentLoaded&#x27;,\n () => {\n  merge.loadState({\n    items: [{\n        link: &#x22;https://nunn.ink&#x22;,\n        label: &#x22;Personal Site&#x22;\n      },\n      {\n        link: &#x22;https://twitter.com/LeviNunnink&#x22;,\n        label: &#x22;Twitter&#x22;\n      },\n      {\n        link: &#x22;https://github.com/LeviNunnink&#x22;,\n        label: &#x22;Github&#x22;\n      }\n    ],\n  });\n}, false);\n&#x3C;/script&#x3E;",
+    "markdown": "&#x3C;div data-merge-include-markdown=&#x201D;my-article.md&#x201D;&#x3E;&#x3C;/div&#x3E;\n\n// my-article.md\n\n## Hello \n\n- Here&#x2019;s a cool article\n- Pretty neat",
+    "json": "// examples.json\n\n{\n   &#x22;title&#x22;: &#x22;Hello World&#x22;,\n   &#x22;links&#x22;: [\n     { href: &#x22;https://wunderbucket.io&#x22;, &#x22;name&#x22;: &#x22;Wunderbucket&#x22; },\n     { href: &#x22;https://github.com/levinunnink/merge.js&#x22;, &#x22;name&#x22;: &#x22;Merge.js&#x22; }\n   ]\n}\n\n// index.html\n\ndocument\n .addEventListener(&#x27;DOMContentLoaded&#x27;, () => {\n  merge.loadState(&#x27;/examples.json&#x27;);\n}, false);"
+  }
+}

@@ -1,0 +1,123 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>This is a Wunderbucket site</title>
+  <meta name="description" content="Something awesome is coming to this URL soon.">
+  <meta name="author" content=" ">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <!--
+    Hi there! This is just a starter HTML template. Feel free to hack away and change it however you want.
+    This is YOUR site. Build something interesting.
+    
+    Cheers! 
+  -->
+
+  <div class="container">
+    <div class="inside">
+      <header>
+        <img src="img/header.png" srcset="img/header.png 1x, img/header@2x.png 2x" />
+      </header>
+      <h1>This is a Wunderbucket site</h1>
+      <p>To get started, just open up <em>index.html</em> with your favorite code editor and start making changes.
+        They’ll show up here as you edit.</p>
+
+      <p>
+        If you want to do a bit more with your HTML, you can use our simple <a
+          href="https://github.com/levinunnink/merge.js">Merge.js templating framework</a>.
+        Merge.js is a simple templating framework that makes it easier to manage your html websites without having to
+        learn a backend language.
+      </p>
+
+      <section class="feature">
+        <div class="section-group">
+          <h4>Includes</h4>
+          <p>You can include HTML files with by adding the <em>data-merge-include</em> attribute to an element.</p>
+          <p>
+            <a href="https://github.com/levinunnink/merge.js#includes-data-merge-include" target="_blank">Learn
+              more.</a>
+          </p>
+        </div>
+        <code>
+          <pre data-merge-content="examples.includes"></pre>
+        </code>
+      </section>
+
+      <section class="feature">
+        <div class="section-group">
+          <h4>Loops</h4>
+          <p>If you have a lot of the same elements on a page and want to create a loop that just repeats them, you can
+            use the <em>data-merge-repeat</em> attriute.</p>
+          <p>
+            <a href="https://github.com/levinunnink/merge.js#includes-data-merge-include" target="_blank">Learn
+              more.</a>
+          </p>
+        </div>
+        <code>
+          <pre data-merge-content="examples.loops"></pre>
+        </code>
+      </section>
+
+      <section class="feature">
+        <div class="section-group">
+          <h4>Markdown</h4>
+          <p>Save your content in Markdown files. Use the <em>data-merge-include-markdown</em> attribute and Merge will
+            include it parse it into HTML for you.</p>
+          <p>
+            <a href="https://github.com/levinunnink/merge.js#markdown-data-merge-include-markdown">Learn more.</a>
+          </p>
+        </div>
+        <code>
+          <pre data-merge-content="examples.markdown"></pre>
+        </code>
+      </section>
+
+      <section class="feature">
+        <div class="section-group">
+          <h4>Databases</h4>
+          <p>Merge can load JSON content from any accessible URL.
+            For simple databases, you can store it as a JSON file right in your local directory.
+            We’ve created a <em>examples.json</em> example for this site. And we're loding it in on
+            line <em>135</em>.
+          </p>
+          <p>
+            <a href="https://github.com/levinunnink/merge.js#loading-data-into-the-engine-state">Learn more.</a>
+          </p>
+        </div>
+        <code>
+          <pre data-merge-content="examples.json"></pre>
+        </code>
+      </section>
+      <h2>100% static, clean output</h2>
+      <p>
+        When you upload your site to Wunderbucket, we run Merge on the server to generate 100% static output so there's
+        no loading delay like you might see on your localhost site. We also remove every trace of Merge, so your
+        source code stays clean and pretty.
+      </p>
+      <p>Just try making a change and publishing this site. View the source code on your public domain once it's done to
+        see what we're talking about.</p>
+    </div>
+
+    <footer data-merge-include="includes/footer.html"></footer>
+  </div>
+  <script src="js/scripts.js"></script>
+  <script data-type="merge-script">
+    document.addEventListener('DOMContentLoaded', function () {
+      merge.loadState('examples.json');
+    }, false);
+  </script>
+  <!--
+    You might notice that this HTML isn't minimized and it doesn't have lots of
+    libraries embedded in it. We think that this is how HTML should look
+    for most websites. We hope you use Wunderbucket to build pages that will last. 
+    
+    https://jeffhuang.com/designed_to_last/ 
+  -->
+</body>
+
+</html>

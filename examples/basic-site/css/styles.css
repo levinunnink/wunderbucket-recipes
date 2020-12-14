@@ -1,0 +1,130 @@
+/*
+  Hello! This is just a starter CSS file.
+  Change it or replace it with your own CSS.
+*/
+
+/* You can embed fonts with Wunderbucket */
+@font-face {
+  font-family: PTMono;
+  src: url(../fonts/PTMono-Regular.ttf);
+}
+
+@font-face {
+  font-family: PTSerif;
+  src: url(../fonts/PTSerif-Regular.ttf);
+}
+
+@font-face {
+  font-family: PTSansBold;
+  src: url(../fonts/PTSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: PTSans;
+  src: url(../fonts/PTSans-Regular.ttf);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: PTSans;
+  height: 100%;
+  font-size: 100%;
+}
+
+a {
+  color: #0E9BD8;
+}
+
+p {
+  color: #5E5E5E;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.container .inside {
+  padding: 3em;
+  box-sizing: border-box;
+  flex: 1;
+  text-align: left;
+  width: 800px;
+}
+
+.container h1 {
+  font-size: 150%;
+  font-weight: 600;
+  font-family: PTSerif;
+  text-align: center;
+  margin: 1.5em 0;
+}
+
+.container h2 {
+  font-size: 120%;
+  font-family: PTSerif;
+  margin-top: 2em;
+}
+
+.container h4 {
+  font-size: 120%;
+  font-family: PTSerif;
+  color: #616161;
+  margin: 0;
+}
+
+.container header,
+.container footer {
+  text-align: center;
+}
+
+p em {
+  display: inline;
+  color: #E30000;
+  font-family: PTMono;
+  font-style: normal;
+}
+
+.container section {
+  display: flex;
+  align-items: baseline;
+}
+
+.container section .section-group {
+  width: 350px;
+  padding: 1em;
+}
+
+.container section .section-group:first-child {
+  padding-left: 0;
+}
+
+.container section .section-group:last-child {
+  padding-right: 0;
+}
+
+.container section a.emphasized {
+  font-family: PTMono;
+}
+
+section.feature {
+  margin: 2em 0;
+  box-sizing: border-box;
+}
+
+.feature code {
+  width: 350px;
+  overflow: scroll;
+  background: #F9F9F9;
+  padding: 1em;
+  color: #2E4AAF;
+  border: 1px solid #efefef;
+}
+
+.feature code pre {
+  white-space: pre-wrap;
+}
