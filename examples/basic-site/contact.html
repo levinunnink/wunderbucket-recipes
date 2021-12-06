@@ -13,20 +13,27 @@
       <div>
         <h3 class="float-md-start mb-0">Cover</h3>
         <nav class="nav nav-masthead justify-content-center float-md-end">
-          <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          <a class="nav-link" aria-current="page" href="index.html">Home</a>
           <a class="nav-link" href="features.html">Features</a>
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link active" href="contact.html">Contact</a>
         </nav>
       </div>
     </header>
 
-    <main class="px-3">
-      <h1>Cover your page.</h1>
-      <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the
-        text, and add your own fullscreen background photo to make it your own.</p>
-      <p class="lead">
-        <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-      </p>
+    <main class="px-3 sub-page">
+      <h2>Contact Us</h2>
+      <form>
+        <!-- Note: Consider using https://sheetmonkey.io for your static site forms -->
+        <div class="mb-3">
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            placeholder="Your email">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3"> 
+          <textarea class="form-control" id="example-textarea" placeholder="Your message"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Contact Us</button>
+      </form>
     </main>
 
     <footer class="mt-auto text-white-50">

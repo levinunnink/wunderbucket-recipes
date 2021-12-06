@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
+
+<head>
+  <meta charset="UTF-8">
+  <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    /* Feel free to customize this style as needed */
+    .gallery__wrapper {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .gallery__wrapper .image {
+      height: 40vh;
+      flex-grow: 1;
+      /* display: flex; */
+      /* align-content: center; */
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    .gallery__wrapper .image:hover {
+      outline: 1px solid rgba(255, 255, 255, 0.5);
+      z-index: 10;
+    }
+
+    .gallery__wrapper .image__title {
+      position: absolute;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      bottom: 5px;
+      left: 5px;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1px 2px;
+    }
+
+    .gallery__wrapper img {
+      max-height: 100%;
+      min-width: 100%;
+      object-fit: cover;
+      vertical-align: center;
+    }
+
+    @media (max-aspect-ratio: 1/1) {
+      .gallery__wrapper .image {
+        overflow: hidden;
+      }
+      .gallery__wrapper .image img {
+        height: 100%;
+      }
+    }
+
+    @media (max-height: 480px) {
+      .gallery__wrapper .image img {
+        height: 80vh;
+      }
+    }
+
+    @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+      .gallery__wrapper {
+        flex-direction: row;
+      }
+
+      .gallery__wrapper .image {
+        height: auto;
+        width: 100%;
+      }
+      .gallery__wrapper .image img {
+        width: 100%;
+        max-height: 75vh;
+        min-width: 0;
+      }
+    }
+  </style>
+  <title>Wunderbucket Image Gallery</title>
+</head> 
+
+<body style="background-color: black;">
+  <div class="container">
+    <div id="app"></div>
+  </div>
+  
+  <script type="module">
+    import { h, Component, render } from 'https://unpkg.com/preact?module';
+    import htm from 'https://unpkg.com/htm?module';
+    
+    // Initialize htm with Preact
+    const html = htm.bind(h);
+    class Gallery extends Component {
+      constructor() {
+        super();
+        this.state = { loading: true };
+      }
+
+      async componentDidMount() {
+        // update time every second
+        const response = await fetch(`/_site.json?${new Date().getTime()}`);
+        const { items } = await response.json();
+        this.setState({ items, loading: false });
+      }
+
+      render() {
+        const { items, loading } = this.state;
+        if(loading) return html`<div class="loading">Loading...</div>`;
+        const currentURL = window.location.pathname;
+        console.log('currentURL', currentURL);
+        const images = items
+          .filter((item) => item.mimeType === "image/png" || item.mimeType === "image/jpeg" || item.mimeType === "image/gif" || items.mimeType === "image/svg+xml")
+          .filter((item) => {
+            return `/${item.path}`.includes(currentURL);
+          })
+          .map((item) => html`<${Image} item="${item}" />`);
+
+        return html`<div class='app gallery'>
+          <div class="gallery__wrapper">
+            ${images}
+          </div>
+        </div>`;
+      }
+    }
+
+    const getLastItem = thePath => thePath.substring(thePath.lastIndexOf('/') + 1)
+
+    function Image({ item }) {
+      return html`
+      <a href="/${item.path}" target="_blank" class='image' title="Open">
+          <img src="/${item.path}" loading="lazy" />
+          <span class="image__title">${getLastItem(item.path)}</span>
+      </a>`;
+    }
+
+    render(html`<${Gallery} />`, document.getElementById('app'));
+  </script>
+</body>
