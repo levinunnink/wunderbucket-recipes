@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+      /* Feel free to customize this style as needed */
+      .gallery__wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      }
+      .gallery__wrapper .image {
+        height: 40vh;
+        flex-grow: 1;
+        /* display: flex; */
+        /* align-content: center; */
+        box-sizing: border-box;
+        position: relative;
+      }
+
+      .gallery__wrapper .image:hover {
+        outline: 1px solid rgba(255, 255, 255, 0.5);
+        z-index: 10;
+      }
+
+      .gallery__wrapper .image__title {
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 1px 2px;
+      }
+
+      .gallery__wrapper img {
+        max-height: 100%;
+        min-width: 100%;
+        object-fit: cover;
+        vertical-align: center;
+      }
+
+      @media (max-aspect-ratio: 1/1) {
+        .gallery__wrapper .image {
+          overflow: hidden;
+        }
+        .gallery__wrapper .image img {
+          height: 100%;
+        }
+      }
+
+      @media (max-height: 480px) {
+        .gallery__wrapper .image img {
+          height: 80vh;
+        }
+      }
+
+      @media (max-aspect-ratio: 1/1) and (max-width: 480px) {
+        .gallery__wrapper {
+          flex-direction: row;
+        }
+
+        .gallery__wrapper .image {
+          height: auto;
+          width: 100%;
+        }
+        .gallery__wrapper .image img {
+          width: 100%;
+          max-height: 75vh;
+          min-width: 0;
+        }
+      }
+    </style>
+    <title>Wunderbucket Image Gallery</title>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-7764373-6"
+    ></script>
+    <script>
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      (window.dataLayer = window.dataLayer || []),
+        gtag("js", new Date()),
+        gtag("config", "UA-7764373-6");
+    </script>
+  </head>
+
+  <body style="background-color: black">
+    <div class="container">
+      <div id="app">
+        <div class="gallery__wrapper" data-merge-repeat="images">
+          <a href="${path}" target="_blank" class="image" title="Open">
+            <img src="${path}" loading="lazy" />
+            <span class="image__title">${item.label}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script data-type="merge-script">
+      document.addEventListener(
+        "DOMContentLoaded",
+        () =>
+          merge.promiseQueue.push(async () => {
+            const getLastItem = (thePath) =>
+              thePath.substring(thePath.lastIndexOf("/") + 1);
+            // put the name of your folder here
+            let folderName = undefined;
+            // get all files in the website
+            let { items } = await merge.fetchAPI
+              .fetch("/_site.json")
+              .then((r) => r.json());
+            // filter out images in the right folder and add the names to data
+            let images = items
+              .filter(
+                (item) =>
+                  item.mimeType === "image/png" ||
+                  item.mimeType === "image/jpeg" ||
+                  item.mimeType === "image/gif" ||
+                  items.mimeType === "image/svg+xml"
+              )
+              .filter((item) => {
+                return folderName ? `/${item.path}`.includes(folderName) : true;
+              })
+              .map((item) => ({ ...item, label: getLastItem(item.path) }));
+            // set the data for the html
+            merge.loadState({ images: images });
+          }),
+        false
+      );
+    </script>
+  </body>
+</html>
